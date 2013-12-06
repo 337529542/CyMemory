@@ -3,12 +3,26 @@
 
 #include "CyMemoryAllocator.h"
 
-#define CY_NEW(type) new(__FILE__, __LINE__) type
-#define CY_DELETE(obj) delete obj
-#define CY_ARRAY_NEW(type) new(__FILE__, __LINE__) type
-#define CY_ARRAY_DELETE(obj) delete[] obj
+#ifdef USE_MEMORY_TRACKER
+
+	#define CY_NEW(type) new(__FILE__, __LINE__) type
+	#define CY_DELETE(obj) delete obj
+	#define CY_ARRAY_NEW(type) new(__FILE__, __LINE__) type
+	#define CY_ARRAY_DELETE(obj) delete[] obj
+
+#else
+
+	#define CY_NEW(type) new type
+	#define CY_DELETE(obj) delete obj
+	#define CY_ARRAY_NEW(type) new type
+	#define CY_ARRAY_DELETE(obj) delete[] obj
+
+#endif
 
 /*usage
+
+	#define USE_MEMORY_TRACKER //important!
+
 	class A : public CyMemoryAllocator
 	{
 	public:

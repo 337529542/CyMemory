@@ -9,6 +9,7 @@ class CyMemoryAllocator
 {
 public:
 
+#ifdef USE_MEMORY_TRACKER
 	static void* operator new (size_t size, const char* file, int line)
 	{
 		void* p = malloc(size);
@@ -70,6 +71,7 @@ public:
 		//cout << "delete[](void* p)"<<endl;
 		free(p);
 	}
+#endif
 };
 
 #endif

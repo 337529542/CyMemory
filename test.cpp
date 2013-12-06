@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#define USE_MEMORY_TRACKER  //important!
 #include "CyMemory.h"
 
 #include <Windows.h>
@@ -33,7 +34,7 @@ int main()
 	//a.foo();
 	A *a = CY_ARRAY_NEW(A)[2];
 	a->foo();
-	CY_ARRAY_DELETE(a);
+	//CY_ARRAY_DELETE(a);
 
 	//delete a;
 
